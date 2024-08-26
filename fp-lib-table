@@ -1,0 +1,6 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "PCM1808_module")(type "KiCad")(uri "/home/raven/gitrepos/pcb/Custom_Kicad_Libraries/PCM1808_module.pretty")(options "")(descr ""))
+  (lib (name "teensy")(type "KiCad")(uri "/home/raven/gitrepos/pcb/downloaded_parts/teensy/teensy.pretty")(options "")(descr ""))
+  (lib (name "PCM5102_module")(type "KiCad")(uri "/home/raven/gitrepos/pcb/Custom_Kicad_Libraries/PCM5102_module.pretty")(options "")(descr ""))
+)
