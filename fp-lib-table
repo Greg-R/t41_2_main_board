@@ -3,4 +3,6 @@
   (lib (name "PCM1808_module")(type "KiCad")(uri "/home/raven/gitrepos/pcb/Custom_Kicad_Libraries/PCM1808_module.pretty")(options "")(descr ""))
   (lib (name "teensy")(type "KiCad")(uri "/home/raven/gitrepos/pcb/downloaded_parts/teensy/teensy.pretty")(options "")(descr ""))
   (lib (name "PCM5102_module")(type "KiCad")(uri "/home/raven/gitrepos/pcb/Custom_Kicad_Libraries/PCM5102_module.pretty")(options "")(descr ""))
+  (lib (name "SJ-3524-SMT")(type "KiCad")(uri "/home/raven/gitrepos/pcb/downloaded_parts/SJ-3524-SMT")(options "")(descr ""))
+  (lib (name "digikey-footprints")(type "KiCad")(uri "/home/raven/gitrepos/pcb/digikey-kicad-library/digikey-footprints.pretty")(options "")(descr ""))
 )
