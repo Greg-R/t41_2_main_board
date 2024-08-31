@@ -9013,6 +9013,18 @@
 		)
 		(uuid "9a229227-0dc5-44ec-8ebc-438da477ff80")
 	)
+	(text "PULLUPS ON I2C"
+		(exclude_from_sim no)
+		(at 179.07 62.23 0)
+		(effects
+			(font
+				(size 4 4)
+				(thickness 0.8)
+				(bold yes)
+			)
+		)
+		(uuid "9a9666ea-296b-47fd-8710-ffdff3496ee1")
+	)
 	(text "AUDIO ENABLE"
 		(exclude_from_sim no)
 		(at 164.465 145.415 0)
