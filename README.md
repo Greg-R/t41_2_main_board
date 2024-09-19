@@ -4,7 +4,12 @@ This is the PCB for the T41-2 Main Board module for the T41 "Software Defined Tr
 The PCB was designed using the open-source design tool Kicad 8.  The "teardrop" feature of
 the layout tool was used to increase PCB reliability.
 
-The T41-2 Main Board evolved from the original V011 design.
+The T41-2 Main Board evolved from the original V011 design.  The Main Board is the central
+core of the T41 transceiver.  This is where the DSP happens, user input is processed and
+the display graphics are generated.  Input-output is very apparent on this board.  There
+are a lot of connectors!
+
+The board is technically easy to build, but it is very time consuming to build.  A lot of work!
 
 ## Summary of Main Board Design Features
 
@@ -20,7 +25,7 @@ the board in order to minimize the length of the cable between the Main Board an
 A jumper is provided to select the display voltage of either 3.3 or 5.0 volts.
 
 An I2C bus is routed to both power distribution connector J1 and also optionally via jumper
-resistors the filter connector J3.  Due to the loading inherent in the ribbon cables, an
+resistors to the filter connector J3.  Due to the loading inherent in the ribbon cables, an
 I2C "re-driver" device (U4) is added to the design.  The re-driver is designed to handle a large
 amount of capacitive load.  So far, testing indicates robust operation of the I2C bus
 with this device in place.  It is planned to add I2C to other T41-2 modules in order to
@@ -117,14 +122,14 @@ and the audio amplifier referenced above:
     #define UNMUTEAUDIO HIGH
     #define MUTEAUDIO   LOW
 
-// If using an external amplifier, the gain may need to be adjusted for the best volume range.
-#define AUDIOSCALE  40    // A typical value is 20.  Increase or decrease this value depending on your amplifier gain.
+    // If using an external amplifier, the gain may need to be adjusted for the best volume range.
+    #define AUDIOSCALE  40    // A typical value is 20.  Increase or decrease this value depending on your amplifier gain.
 
 ### Power Supply Decoupling and Regulators
 
 The power supplies routed through the 16 wire ribbon cable are prone to noise, most likely from the Main board.
 Regulators for the three required voltages include low-esr bypass capacitors.  This will provide clean bias sources
-to the modulator circuit.
+to the modulator circuit.  Series ferrite beads provide additional isolation and decoupling.
 
 ### Connectors
 
@@ -142,7 +147,7 @@ Shipping was about US$25.00 for quantity 5 boards.  JLCPCB can be used, and has 
 
 A public Digikey BOM is here:
 
-<https://www.digikey.com/en/mylists/list/XQQB1BJVVE>
+<https://www.digikey.com/en/mylists/list/CFS9I8P9OV>
 
 Please note that specific parts may or may not be available when attempting to order.  It is the responsibility of the builder
 to find subsitutes as required.
@@ -150,46 +155,71 @@ to find subsitutes as required.
 ## Build Tips
 
 In general, the T41-2 Main Board is easier to build than the original V010/V011 series boards.  There are a few items to be aware of to avoid
-build errors.
+build errors.  These are my observations.  You may need to do things differently in your lab.
 
-The most probable error(s) are incorrect orientation of the flip-flop, multiplexer, transformer, and differential amplifier devices.
-The pin 1 markings on the devices are very difficult to see.  The transformer markings are easy to read; this should be clear in the
-photograph of the finished board.
+Be very careful when soldering connectors!  Because when one of the through-hole connectors gets soldered in, they are very difficult to
+remove.  I say this because there are connectors on BOTH sides of the board!  The through-hole connectors will be towards the last, so
+make sure you are wide awake when they are soldered in.
 
-Here are details on each part with regards to proper orientation of the board.  The descriptions are viewing the top side of the board,
-with the "T41 EXPERIMENTERS PLATFORM" near the bottom of the board in normal left-to-right reading orientation.
+### Top Side Surface Mount Parts
 
-### Transformer TR2
+This board doesn't have a high density of surface mount parts.  There are 2 integrated circuits, and a handful of capacitors, resistors,
+and ferrite beads.  I have started using a hot plate to solder these parts.  This goes quickly.
 
-The transformer TR2 should be placed with the "dot" at the upper left corner.  If you are using the ADT1-1+, it appears
-to be symmetrical, so the orientation shouldn't matter.  However, other transformers may require a specific orientation.
+The four 3.5mm stereo jacks are surface mount and they are the last things to reflow.  Keep an eye on them, and when they finally reflow,
+the top side reflow process is close to done.
 
-### 74AC74 Dual Flip-Flop U4
+There is a small marker to indicate Pin 1 on both of the ICs.  They are both SOIC packages and solder easily without shorting.
 
-Pin 1 should be in the lower left corner.  This is marked with a small white dot on the PCB.
+### Bottom Side Surface Mount Parts
 
-### 3253 Multiplexer U3
+I place these parts with solder paste as normal.  Then I clamp the board in a vise, and use a hot air soldering tool to reflow the solder.
+You can do this quickly enough to not reflow the top side parts.  There are only a few passive bottom side surface mount parts.
 
-Pin 1 is at the upper right.  Look for a small white dot next to pin 1.
+### Headers for the Plug-in Devices
 
-### Differential Amplifiers AD8137 U5 and U9
+There are several headers for the Teensy and data converters.  I happen to have a dead Teensy and data converters.  I put the headers
+on the dead parts, and then insert the header pins into the Main board.  This lines everything up nicely.  No crooked headers!
+All of the pins are carefully hand soldered, which is a time consuming process.
 
-Pin 1 indicated with a dot on the PCB.  Both parts are oriented the same, with Pin 1 towards the upper right.
-There is a dot on the parts to indicate Pin 1, however, it is very hard to see.  The package is beveled on the Pin 1 side; this is easy to see.
+### IDC Connectors
+
+As mentioned above, be sure to get these on the correct side of the board and oriented correctly!  Take it very slow, and make
+sure the connectors are flush to the board during the soldering process.
+
+Note that only the 16 pin IDC connector is on the top side of the board.  The four 10 pin connectors are on the bottom side.
+
+### JST Connectors
+
+There are 2, 3, and 4 pin JST connectors.  I like to use these connectors, as they are polarized.
+Only the 3 pin Switch Matrix connector is inserted into the bottom side of the board.  All others are mounted on the top side.
+
+### Header for Display Voltage Selection
+
+The display voltage selection header is a regular style bare header with 3 pins.  You will need to use a jumper to select
+the voltage which matches your display supply voltage.
 
 ### Non-placed Parts
 
-Don't place R3.  Placing this jumper implements shutdown of the differential amplifiers during receive.  This feature has not been
-tested.
+Don't place R10 or R11.  These connect the I2C bus to the Low Pass Filter Control connector.  These may be used with future
+board designs.
 
-Don't place J7, R5, and R7.  These parts are for future use with an Si5351 module.
+### Cable Assemblies
 
-The two-pin header J6 can be optionally placed if it is convenient to route the TXRX signal from the QSE2DCEZ board.
+You will need to build several cables.  This requires the small pins and a crimping device.  The small pins come in a roll,
+and they are listed in the BOM.  Here is a link to a crimper:
 
-### Bottom Side Parts
+<https://www.amazon.com/gp/product/B01N4L8QMW>
 
-There are 5 capacitors and 1 resistor on the bottom side of the PCB.  These should be soldered last.  I was able to use a hot air gun without
-any problems with the top-side components desoldering.
+The little cables are tedious to build.  Proceed slowly and you will achieve a reliable result.
+A list of the cables which need to be built:
+
+1.  4 pin XH to (audio amplifer connector) audio amplifier.  This carries analog audio and amplifier enable signals.
+2.  3 pin XH to 3 pin XH from Main Board to Audio Adapter.  This is for transmit I and Q.  Don't use a polarized connector
+    on the Audio Adapter side, because it may need to be flipped if the sideband is wrong.  Use a plain header on the 
+    Audio Adapter so that flipping is possible.
+3.  2 pin XH to 2 pin XH from Main Board to Audio Adapter.  This is for microphone audio.
+4.  3 pin XH to 3 pin XH from bottom side of Main Board to Switch Matrix.
 
 ### High Resolution Photos of T41-2 Main Board
 
@@ -218,5 +248,4 @@ Transceiver:  <https://www.amazon.com/Digital-Signal-Processing-Software-Defined
     <https://github.com/Greg-R/bracket_dual_T41>
 6.  T41EEE software for the T41 transceiver:
     <https://github.com/Greg-R/T41EEE>
-
 
