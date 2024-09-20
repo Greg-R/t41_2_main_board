@@ -43,7 +43,7 @@ For more information, please refer to this repository:
 
 <https://github.com/Greg-R/bracket_dual_T41>
 
-Note that the QSE2DC/QSE3DCEZ boards include a connector to provide power and I2C to the
+Note that the QSE2DC/QSE2DCEZ boards include a connector to provide power and I2C to the
 Si5351 module.  It should be easy to "hack" these connections to an older QSD or QSE board.
 
 The same data converter modules, the PCM5102 and PCM1808, are retained.  Pin spacing issues
