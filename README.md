@@ -11,6 +11,13 @@ are a lot of connectors!
 
 The board is technically easy to build, but it is very time consuming to build.  A lot of work!
 
+## License
+
+This design is licensed under the CERN Open Hardware Licence.  A copy of the license is
+included in this repository.  The license is also available via this link:
+
+<https://ohwr.org/cern_ohl_s_v2.txt>
+
 ## Summary of Main Board Design Features
 
 The display buffer device is retained.  The display buffer/driver device is required due to the
