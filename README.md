@@ -238,6 +238,16 @@ Links to photos of a fully constructed T41-2 Main Board follow.
 
 <https://drive.google.com/file/d/1b3odUEUUSwXo5qLtaAhQx5JJ_SECJyb-/view?usp=sharing>
 
+### PCB Symbols and Footprints
+
+The libraries folder includes symbols and footprints.  You will need these libraries:
+
+<https://github.com/Digi-Key/digikey-kicad-library>
+
+<https://github.com/XenGi/teensy_library>
+
+<https://github.com/XenGi/teensy.pretty>
+
 ## References and Further Reading
 
 1.  "Digital Signal Processing and Software Defined Radio, Theory and Construction of the T41-EP Software Defined Transceiver",
